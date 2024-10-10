@@ -1,14 +1,14 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #1c1c1c;
+    background-color: #020202 !important; /* 배경색 확실히 적용 */
     position: relative;
-    min-height: 100vh;
+    min-height: 100%;
 }
 
 header.logo {
     position: absolute; /* 절대 위치 설정 */
-    top: 30px; /* 위쪽 여백 설정 */
+    top: 0px; /* 위쪽 여백 설정 */
     left: 60px; /* 왼쪽 여백 설정 */
     z-index: 10; /* 비디오보다 위에 나타나도록 설정 */
 }
@@ -19,24 +19,92 @@ header.logo h1 {
     font-size: 2rem; /* 로고 크기 조정 */
     margin: 5; /* 기본 여백 제거 */
 }
-
 .container {
     display: grid;
-    grid-template-columns: 2fr 2fr 2fr; /* 열의 비율을 설정 */
-    grid-template-rows: 2fr 2fr; /* 행의 비율을 설정 */
-    margin-top: 50px;
-    gap: 10px; /* 각 비디오 사이의 간격 */
+    grid-template-columns: repeat(3, 1fr); /* 3개의 열로 나눔 */
+    grid-template-rows: repeat(15, 1fr); /* 15개의 행으로 나눔 */
+    gap: 10px;
     width: 100vw;
-    height: 150vh; /* 전체 화면 높이 */
-    padding: 10px;
+    height: 150vh; /* 높이를 150vh로 설정 */
     box-sizing: border-box;
 }
 
-.video-section {
+/* 각 섹션에 대한 그리드 영역 정의 */
+.section1 {
+    grid-area: 1 / 1 / 6 / 3; /* 첫 번째부터 다섯 번째 행, 첫 번째와 두 번째 열까지 */
+}
+
+.section2 {
+    grid-area: 3 / 3 / 6 / 4; /* 세 번째부터 다섯 번째 행, 세 번째 열 */
+}
+
+.section3 {
+    grid-area: 6 / 1 / 10 / 4; /* 여섯 번째부터 아홉 번째 행, 첫 번째부터 세 번째 열까지 */
+}
+
+.section4 {
+    grid-area: 10 / 2 / 16 / 4; /* 열 번째부터 열다섯 번째 행, 두 번째와 세 번째 열까지 */
+}
+
+.section5 {
+    grid-area: 1 / 3 / 3 / 3; /* 열 번째부터 열두 번째 행, 첫 번째 열 */
+}
+
+.section6 {
+    grid-area: 10 / 1 / 16 / 2; /* 열세 번째부터 열다섯 번째 행, 첫 번째 열 */
+}
+
+
+
+/* Section 5 Text + Graph */
+.text-section {
     position: relative;
-    background-color: #2d2d2d;
+    padding: 40px;
+    color: white;
     overflow: hidden;
-    border: 0.1px solid #2d2d2d;
+}
+
+.graph-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.graph-svg {
+    display: block;
+    margin-top: 30px;
+    width: 100%;
+    height: auto;
+}
+
+
+
+/* 애니메이션을 위한 그래프 선 */
+.graph-line {
+    stroke-dasharray: 1000; /* 그래프 길이만큼의 dasharray */
+    stroke-dashoffset: 1000; /* 시작 시 dasharray가 모두 감춰져 있음 */
+    animation: drawGraph 3s ease-in-out infinite alternate; /* 무한 반복, 그려지고 사라짐 */
+}
+
+@keyframes drawGraph {
+    to {
+        stroke-dashoffset: 0; /* 최종적으로 선이 전부 그려짐 */
+    }
+}
+
+svg text {
+    font-family: 'Pretendard-Regular', sans-serif; /* 폰트 적용 */
+    font-weight: bold;
+    fill: #ffffff;
+}
+
+
+
+
+.video-section, .text-section {
+    position: relative;
+    overflow: hidden;
+    border: 2px solid #2d2d2d;
 }
 
 .video-section video {
@@ -51,38 +119,85 @@ header.logo h1 {
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50%; /* 섹션 하단의 절반만 차지하도록 설정 */
-    background-color: rgba(0, 0, 0, 0); /* 오버레이 배경색 */
+    height: 100%; /* 전체 높이를 차지하도록 설정 */
+    background-color: rgba(0, 0, 0, 0.5); /* 불투명한 검은색 배경 (50% 투명도) */
     color: white;
     display: flex;
-    justify-content: center; /* 텍스트를 중앙에 위치시킴 */
-    align-items: center; /* 세로 정렬 */
-    opacity: 1; /* 항상 보이도록 설정 */
-    text-align: left; /* 텍스트 왼쪽 정렬 */
-    padding: 20px;
-    font-size: 1.5rem;
+    justify-content: center; /* 텍스트를 가로로 중앙 정렬 */
+    align-items: center; /* 텍스트를 세로로 중앙 정렬 */
+    text-align: left; /* 텍스트를 중앙 정렬 */
+    padding: 10px;
+    font-size: 1.4rem;
+}
+
+
+
+.overlay-text {
+    position: absolute;
+    left: 60px; /* 로고의 left 위치와 동일하게 설정 */
 }
 
 .overlay-text p {
+    font-family: 'Pretendard-Regular', sans-serif; /* 폰트 적용 */
     padding: 10px; /* 원하는 패딩 값 설정 */
-    font-size: 1rem; /* 필요에 따라 폰트 크기 조정 */
+    font-size: 0.8rem; /* 필요에 따라 폰트 크기 조정 */
     color: #d9d9d9;
     font-weight: lighter; /* 텍스트 가중치 설정 */
 }
 
-/* 불규칙한 타일 형태를 위한 설정 */
-.section1 {
-    grid-area: 1 / 1 / 2 / 3; /* 첫 번째 비디오: 1행 1열 ~ 2행 3열 */
+/* Section 6 전용 오버레이 스타일 */
+.section6-overlay {
+    font-family: 'Pretendard-Regular', sans-serif; /* 폰트 적용 */
+    color: #333; /* 텍스트 색상을 어두운 색으로 변경 */
+    display: flex;
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    text-align: start; /* 텍스트 가운데 정렬 */
+    position: relative; /* 위치를 절대가 아닌 상대적 */
+    
 }
 
-.section2 {
-    grid-area: 1 / 3 / 2 / 3; /* 두 번째 비디오: 1행 3열 ~ 2행 4열 */
+/* Section 6 텍스트 스타일링 */
+.section6-overlay .overlay-text {
+    font-family: 'Pretendard-Regular', sans-serif; /* 폰트 적용 */
+    font-size: 1.2rem; /* 텍스트 크기 설정 */
+    right: 60px;
+    color: #333; /* 텍스트 색상 설정 */
+    
 }
 
-.section3 {
-    grid-area: 2 / 1 / 3 / 1; /* 세 번째 비디오: 2행 1열 ~ 3행 2열 */
+.section6-overlay .overlay-text p {
+    line-height: 1.5; /* 줄 간격 */
 }
 
-.section4 {
-    grid-area: 2 / 2 / 3 / 4; /* 네 번째 비디오: 2행 2열 ~ 3행 4열 */
+
+
+/* 플로팅 버튼 스타일 */
+.floating-button {
+    position: fixed;
+    bottom: 50px;  /* 화면 하단에서 20px 위 */
+    left: 50%;  /* 화면의 수평 가운데 정렬 */
+    transform: translateX(-50%);  /* 정확히 가운데 위치시키기 위한 transform */
+    color: white;  /* 화살표 색상 */
+    border-radius: 50%;  /* 둥근 버튼 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4rem;  /* 화살표 크기 */
+    text-decoration: none;  /* 링크 밑줄 제거 */
+    
+    transition: background-color 0.3s ease, transform 0.5s ease-in-out;  /* 호버 및 애니메이션 */
+    animation: bounce 2s infinite;  /* 위아래로 움직이는 애니메이션 */
+}
+
+
+
+/* 위아래로 움직이는 애니메이션 */
+@keyframes bounce {
+    0%, 100% {
+        transform: translate(-50%, 0);  /* 처음과 끝 위치 */
+    }
+    50% {
+        transform: translate(-50%, -10px);  /* 중간에 살짝 위로 올라감 */
+    }
 }

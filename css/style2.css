@@ -1,0 +1,91 @@
+/* 전체 html 및 body에 배경색 적용 */
+html, body {
+    margin: 24px;
+    padding: 0;
+    font-family: 'Pretendard-Regular', sans-serif; /* 폰트 적용 */
+    background-color: #020202 !important; /* 배경색 확실히 적용 */
+    height: 100%; /* 페이지 전체 높이를 채우기 위해 */
+    animation: scrollAnimation 0.5s ease-out; /* 1초 동안 스크롤 애니메이션 적용 */
+}
+
+/* 애니메이션 정의 */
+@keyframes scrollAnimation {
+    0% {
+        transform: translateY(100%); /* 시작 시 아래쪽에서 시작 */
+        opacity: 0; /* 투명도 0 */
+    }
+    100% {
+        transform: translateY(0); /* 끝날 때 원래 위치로 */
+        opacity: 1; /* 투명도 1 */
+    }
+}
+
+/* main-content를 절대 위치로 설정하여 원하는 위치에 배치 */
+.main-content {
+    position: absolute; /* 절대 위치 설정 */
+    width: max-content;
+    top: 54px; /* 위쪽 여백 설정 */
+    left: 60px; /* 왼쪽 여백 설정 */
+    z-index: 10; /* 다른 요소보다 위에 나타나도록 설정 */
+    color: white; /* 폰트 색상 (배경에 맞게 설정 가능) */
+    font-family: 'Arial', sans-serif; /* 원하는 폰트 설정 */
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #fff; /* 텍스트가 배경과 대비되도록 흰색으로 변경 */
+}
+
+p {
+    font-size: 1rem;
+    color: #d2d2d2; /* 텍스트가 배경과 대비되도록 밝은 회색으로 변경 */
+}
+
+hr {
+    width: 50vw; /* 전체 viewport 너비 */
+    border: 0.1px solid #d9d9d9; /* 원하는 구분선 색상 */
+    position: relative; /* 상대적 위치 */
+    left: 50%; /* 화면의 중간에서 시작 */
+    transform: translateX(-50%); /* 정확히 가운데로 이동 */
+    margin: 20px 0; /* 위아래 여백 설정 */
+
+}
+
+
+/* 공통 플로팅 버튼 스타일 */
+.floating-button {
+    position: fixed;
+    color: white;  /* 화살표 색상 */
+    display: flex;
+    justify-content: center;
+    align-items: top;
+    font-size: 1.5rem;  /* 화살표 크기 */
+    text-decoration: none;  /* 링크 밑줄 제거 */
+    transition: background-color 0.3s ease, transform 0.5s ease-in-out;  /* 호버 및 애니메이션 */
+    animation: bounce 2s infinite;  /* 위아래로 움직이는 애니메이션 */
+}
+
+/* 위로 이동하는 버튼 */
+.floating-button-up {
+    top: 15px;  /* 화면 상단에서 20px 아래 */
+    left: 50%;  /* 화면의 수평 가운데 정렬 */
+    transform: translateX(-50%);  /* 정확히 가운데 위치시키기 위한 transform */
+}
+
+/* 아래로 이동하는 버튼 */
+.floating-button-down {
+    bottom: 15px;  /* 화면 하단에서 20px 위 */
+    left: 50%;  /* 화면의 수평 가운데 정렬 */
+    transform: translateX(-50%);  /* 정확히 가운데 위치시키기 위한 transform */
+}
+
+
+/* 위아래로 움직이는 애니메이션 */
+@keyframes bounce {
+    0%, 100% {
+        transform: translate(-50%, 0);  /* 처음과 끝 위치 */
+    }
+    50% {
+        transform: translate(-50%, -10px);  /* 중간에 살짝 위로 올라감 */
+    }
+}
