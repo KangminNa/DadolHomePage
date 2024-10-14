@@ -9,20 +9,21 @@ body {
     background-color: #020202;
     color: white;
     font-size: 16px;
-    height: 200vh;
-    display: flex; /* flexbox를 사용하여 container를 중앙으로 정렬 */
-    justify-content: center; /* 가로축 중앙 정렬 */
-    align-items: center; /* 세로축 중앙 정렬 */
+    min-height: 100vh;
+    display: flex; 
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
 }
 
 .container {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2개의 열로 나눔 */
-    grid-template-rows: repeat(8, 1fr); /* 8개의 행으로 나눔 */
+    grid-template-rows: repeat(8, auto); /* 행의 높이를 자동으로 설정 */
     gap: 100px;
     width: 80vw;
-    height: 200vh; /* 전체 높이를 200vh로 설정 */
+    max-width: 1200px; /* 최대 너비를 설정 */
+    height: auto;
     padding: 7%;
     align-items: center;
     box-sizing: border-box;
@@ -40,22 +41,22 @@ body {
 }
 
 .section3 {
-    grid-area: 5 / 2 / 5 / 3; /* 세 번째부터 다섯 번째 행, 두 번째 열 */
+    grid-area: 4 / 2 / 5 / 3; /* 세 번째부터 다섯 번째 행, 두 번째 열 */
     padding: 20px;
 }
 
 .section4 {
-    grid-area: 6 / 1 / 5 / 2; /* 네 번째부터 다섯 번째 행, 첫 번째 열 */
+    grid-area: 4 / 1 / 5 / 2; /* 네 번째부터 다섯 번째 행, 첫 번째 열 */
     padding: 20px;
 }
 
 .section5 {
-    grid-area: 8 / 1 / 8 / 2; /* 여섯 번째부터 여덟 번째 행, 첫 번째 열 */
+    grid-area: 7 / 1 / 8 / 2; /* 여섯 번째부터 여덟 번째 행, 첫 번째 열 */
     padding: 20px;
 }
 
 .section6 {
-    grid-area: 9 / 2 / 7 / 3; /* 여섯 번째부터 일곱 번째 행, 두 번째 열 */
+    grid-area: 8 / 2 / 7 / 3; /* 여섯 번째부터 일곱 번째 행, 두 번째 열 */
     padding: 20px;
 }
 
@@ -84,18 +85,18 @@ body {
     grid-area: 9 / 1 / 16 / 3; /* 섹션 8 다음에 나오는 비전 섹션 */
     text-align: center;
     padding: 20px;
-    margin: 40vh 0; /* 상하 마진 100px, 좌우 마진 0 */
+    margin: 40vh 0; /* 상하 마진 */
 }
 
 .vision h1 {
     font-size: 2.5em; /* 제목을 크게 설정 */
-    margin-bottom: 20px; /* 제목과 이미지 사이의 간격 */
+    margin-bottom: 20px;
 }
 
 .text-overlay {
     position: relative;
     z-index: 2; /* 비디오 위에 표시 */
-    color: #d9d9d9; /* 텍스트 색상을 검정으로 설정 */
+    color: #efefef;
     text-align: center;
     padding: 20px;
 }
@@ -111,11 +112,10 @@ body {
     margin-bottom: 20px;
 }
 
-
 .background-video {
     position: absolute;
-    top: 180vh;
-    left: 0vw;
+    top: 200vh;
+    left: 0;
     width: 100%;
     height: 80%;
     object-fit: contain;
@@ -139,4 +139,34 @@ body {
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* 반응형 디자인: 작은 화면에서 요소 크기 조정 */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr; /* 작은 화면에서는 한 열로 설정 */
+        gap: 50px;
+        width: 95vw;
+    }
+
+    .solution h2 {
+        font-size: 1.5rem;
+    }
+
+    .solution p {
+        font-size: 1em;
+        line-height: 1.4;
+    }
+
+    .vision h1 {
+        font-size: 2.5em;
+    }
+
+    .text-overlay h1 {
+        font-size: 2.5em;
+    }
+
+    .text-overlay p {
+        font-size: 1.2em;
+    }
 }
