@@ -17,7 +17,7 @@ html, body {
 }
 
 h1 {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     color: #fff;
     margin: 0;
 }
@@ -78,6 +78,7 @@ h1 {
     background-color: #141414;
     transform: rotateY(180deg); /* 카드 뒷면을 미리 180도 회전 */
     z-index: 1; /* 뒷면이 앞면 뒤로 위치 */
+    text-align: start;
     position: relative; /* 버튼의 절대 위치 설정을 위한 relative */
 }
 
